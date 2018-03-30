@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+	<h1>{{title}}</h1>
+	<h3>Employee</h3>
+	<hr />
+	<form [formGroup]="employeeForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+		<div class="form-group row">
+			<label class=" control-label col-md-12" for="employee_Name">Employee Name</label>
+			<div class="col-md-4">
+				<input class="form-control" type="text" formControlName="employee_Name">
+			</div>
+			<span class="text-danger" *ngIf="employeeForm.hasError('required', 'employee_Name') && formDir.submitted">
+				Employee Name is required.
+			</span>
+		</div>
+
+		<div class="form-group row">
+			<label class="control-label col-md-12" for="department_Id">Department</label>
+			<div class="col-md-4">
+				<select class="form-control" data-val="true" formControlName="department_Id">
+					<!--<option value="">--Select City--</option>-->
+					<option *ngFor="let city of departList"
+							value={{city.id}}>
+						{{city.name}}
+					</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class=" control-label col-md-12" for="joiningDate">Joining Date</label>
+			<div class="col-md-4">
+				<input class="form-control" type="datetime-local" formControlName="joiningDate">
+			</div>
+			<span class="text-danger" *ngIf="employeeForm.hasError('required', 'joiningDate') && formDir.submitted">
+				Joining Date is required.
+			</span>
+		</div>
+
+		<div class="form-group row">
+			<label class=" control-label col-md-12" for="address">Address</label>
+			<div class="col-md-4">
+				<input class="form-control" type="text" formControlName="address">
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class=" control-label col-md-12" for="Email">Email</label>
+			<div class="col-md-4">
+				<input class="form-control" type="text" formControlName="email">
+			</div>
+			<span class="text-danger" *ngIf="employeeForm.hasError('required', 'email') && formDir.submitted">
+				Email is required.
+			</span>
+
+		</div>
+
+		<div class="form-group row">
+			<label class=" control-label col-md-12" for="mobileNo">Mobile No</label>
+			<div class="col-md-4">
+				<input class="form-control" type="text" formControlName="mobileNo">
+			</div>
+			<span class="text-danger" *ngIf="employeeForm.hasError('required', 'mobileNo') && formDir.submitted">
+				Mobile No is required.
+			</span>
+		</div>
+
+
+
+
+		<div class="form-group">
+			<button type="submit" class="btn btn-default">Save</button>
+			<button class="btn" (click)="cancel()">Cancel</button>
+		</div>
+
+		<a [routerLink]="['/fetch-employee']">Back to list</a>
+	</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+	<h1>{{title}}</h1>
+	<h3>Department</h3>
+	<hr />
+	<form [formGroup]="departmentForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+		<div class="form-group row">
+			<label class=" control-label col-md-12" for="Name">Department Name</label>
+			<div class="col-md-4">
+				<input class="form-control" type="text" formControlName="name">
+			</div>
+			<span class="text-danger" *ngIf="departmentForm.hasError('required', 'name') && formDir.submitted">
+				Department Name is required.
+			</span>
+		</div>
+
+		<div class="form-group">
+			<button type="submit" class="btn btn-default">Save</button>
+			<button class="btn" (click)="cancel()">Cancel</button>
+		</div>
+
+		<a [routerLink]="['/fetch-department']">Back to list</a>
+	</form>
+</body>
+</html>
